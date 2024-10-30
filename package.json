@@ -1,6 +1,6 @@
 {
   "name": "@hacxy/json2ts",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Json to typescript types generator",
   "type": "module",
   "main": "./dist/index.cjs",
