@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0](https://github.com/hacxy/json-ts/compare/v0.0.1...v0.1.0) (2024-10-30)
+
+
+### Bug Fixes
+
+* Adjust the default value of the type name ([ff7583e](https://github.com/hacxy/json-ts/commit/ff7583efebcde500614f9b63e22cdc4d5f2a45d6))
+
 ### 0.0.1 (2024-10-30)
 
 
