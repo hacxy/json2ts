@@ -1,6 +1,6 @@
 import { jsonInputForTargetLanguage, InputData, quicktype } from 'quicktype-core';
 
-const json2ts = async (json: string, name: string = 'root') => {
+const json2ts = async (json: string, name: string = 'Root') => {
   let isArray = false;
   try {
     isArray = Array.isArray(JSON.parse(json));
