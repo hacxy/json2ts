@@ -54,3 +54,12 @@ interface Json2TsOptions {
 ### Returns
 
 `Promise`\<`string`\>
+
+## Related
+
+- json2typebox: [https://github.com/hacxy/json2typebox](https://github.com/hacxy/json2typebox)
+- json2typebox-cli: [https://github.com/hacxy/json2typebox-cli](https://github.com/hacxy/json2typebox-cli)
+
+## License
+
+MIT
