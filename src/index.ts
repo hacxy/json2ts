@@ -1,6 +1,11 @@
 import { jsonInputForTargetLanguage, InputData, quicktype } from 'quicktype-core';
 
-const json2ts = async (json: string, name: string = 'Root') => {
+export interface Json2TsOptions {
+  indentation?: number;
+}
+
+const json2ts = async (json: string, name: string = 'Root', options: Json2TsOptions = {}) => {
+  const { indentation = 2 } = options;
   let isArray = false;
   try {
     isArray = Array.isArray(JSON.parse(json));
@@ -22,7 +27,8 @@ const json2ts = async (json: string, name: string = 'Root') => {
     rendererOptions: {
       'just-types': true
     },
-    indentation: '  '
+
+    indentation: ' '.repeat(indentation)
   });
 
   let tsCode = lines.join('\n');

@@ -34,10 +34,22 @@ function: `json2ts()`
 
 ### Params
 
-| name   | types    | default     | description      |
-| :----- | :------- | :---------- | :--------------- |
-| `json` | `string` | `undefined` | json data        |
-| `name` | `string` | `'Root'`    | define type name |
+| name      | types                             | default              | description      |
+| :-------- | :-------------------------------- | :------------------- | :--------------- |
+| `json`    | `string`                          | `undefined`          | json data        |
+| `name`    | `string`                          | `'Root'`             | define type name |
+| `options` | [Json2TsOptions](#Json2TsOptions) | `{ indentation: 2 }` | Generate options |
+
+#### Json2TsOptions
+
+```ts
+interface Json2TsOptions {
+  /**
+   * indentation of the generated code, default is 2 spaces
+   */
+  indentation?: number;
+}
+```
 
 ### Returns
 
