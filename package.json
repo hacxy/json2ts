@@ -12,9 +12,6 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build",
-    "docs:dev": "concurrently \"typedoc --watch\" \"vitepress dev docs\" ",
-    "docs:build": "typedoc && vitepress build docs",
-    "docs:preview": "vitepress preview docs",
     "release": "dotenv release-it",
     "release:ci": "dotenv release-it --ci",
     "demo:web": "vite",
@@ -28,15 +25,17 @@
   "keywords": [
     "json",
     "typescript",
-    "types"
+    "types",
+    "json2typescript",
+    "json2ts"
   ],
   "author": {
     "name": "hacxy",
     "email": "hacxy.js@outlook.com",
     "url": "https://github.com/hacxy"
   },
-  "homepage": "https://github.com/hacxy/json-ts",
-  "repository": "https://github.com/hacxy/json-ts",
+  "homepage": "https://github.com/hacxy/json2ts",
+  "repository": "https://github.com/hacxy/json2ts",
   "bugs": {
     "url": "https://github.com/hacxy/json-ts/issues"
   },
