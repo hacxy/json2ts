@@ -50,13 +50,13 @@
     "eslint": "^8.56.0",
     "globals": "^15.0.0",
     "release-it": "^15.5.1",
-    "typescript": "5.4.5",
     "typescript-eslint": "^7.6.0",
     "vite": "^5.2.8",
     "vite-plugin-dts": "^3.3.1",
     "vitest": "^1.5.0"
   },
   "dependencies": {
-    "quicktype-core": "23.0.146"
+    "quicktype-core": "23.0.146",
+    "typescript": "5.4.5"
   }
 }

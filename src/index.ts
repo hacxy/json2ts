@@ -1,4 +1,5 @@
 import { jsonInputForTargetLanguage, InputData, quicktype } from 'quicktype-core';
+import { analyzeAndSortTypeScript } from './utils';
 
 export interface Json2TsOptions {
   indentation?: number;
@@ -36,7 +37,10 @@ const json2ts = async (json: string, name: string = 'Root', options: Json2TsOpti
   if (isArray) {
     tsCode = tsCode + `\nexport type ${name} = ${name}Element[];`;
   }
-  return tsCode;
+
+  const { sortedCode } = analyzeAndSortTypeScript(tsCode);
+
+  return sortedCode;
 };
 
 export default json2ts;

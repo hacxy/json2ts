@@ -11,7 +11,7 @@ export default defineConfig({
       fileName: 'index'
     },
     rollupOptions: {
-      external: ['quicktype-core']
+      external: ['quicktype-core', 'typescript']
     }
   },
   resolve: {
