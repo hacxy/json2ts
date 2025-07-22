@@ -1,16 +1,17 @@
-import { jsonInputForTargetLanguage, InputData, quicktype } from 'quicktype-core';
+import { InputData, jsonInputForTargetLanguage, quicktype } from 'quicktype-core';
 import { analyzeAndSortTypeScript } from './utils';
 
 export interface Json2TsOptions {
-  indentation?: number;
+  indentation?: number
 }
 
-const json2ts = async (json: string, name: string = 'Root', options: Json2TsOptions = {}) => {
+async function json2ts(json: string, name: string = 'Root', options: Json2TsOptions = {}) {
   const { indentation = 2 } = options;
   let isArray = false;
   try {
     isArray = Array.isArray(JSON.parse(json));
-  } catch (err) {
+  }
+  catch (err) {
     throw new Error(String(err));
   }
 
@@ -35,12 +36,11 @@ const json2ts = async (json: string, name: string = 'Root', options: Json2TsOpti
   let tsCode = lines.join('\n');
 
   if (isArray) {
-    tsCode = tsCode + `\nexport type ${name} = ${name}Element[];`;
+    tsCode = `${tsCode}\nexport type ${name} = ${name}Element[];`;
   }
-
   const { sortedCode } = analyzeAndSortTypeScript(tsCode);
 
   return sortedCode;
-};
+}
 
 export default json2ts;

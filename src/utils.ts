@@ -41,7 +41,7 @@ export function analyzeAndSortTypeScript(codeString: string): { sortedCode: stri
             deps.add(refName);
           }
         }
-        // 处理数组类型 (如 RootElement[])
+        // 处理数组类型
         else if (ts.isArrayTypeNode(n)) {
           findTypeReferences(n.elementType);
         }
