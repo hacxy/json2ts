@@ -1,3 +1,4 @@
-import defineConfig from '@hacxy/eslint-config';
+import hacxy from '@hacxy/eslint-config';
 
-export default defineConfig({});
+export default hacxy();
+

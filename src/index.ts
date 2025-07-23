@@ -18,7 +18,7 @@ async function json2ts(json: string, name: string = 'Root', options: Json2TsOpti
   const jsonInput = jsonInputForTargetLanguage('typescript');
   await jsonInput.addSource({
     name: isArray ? `${name}Element` : name,
-    samples: [json]
+    samples: [json],
   });
 
   const inputData = new InputData();
@@ -27,10 +27,10 @@ async function json2ts(json: string, name: string = 'Root', options: Json2TsOpti
     inputData,
     lang: 'typescript',
     rendererOptions: {
-      'just-types': true
+      'just-types': true,
     },
 
-    indentation: ' '.repeat(indentation)
+    indentation: ' '.repeat(indentation),
   });
 
   let tsCode = lines.join('\n');

@@ -15,11 +15,9 @@ npm install @hacxy/json2ts --save
 ### Example
 
 ```ts
-import json2ts from '@hacxy/json2ts';
+import json2ts from "@hacxy/json2ts";
 
-json2ts(`{"id": 1, "name": "hacxy"}`, 'Root').then((code) => {
-  console.log(code);
-});
+await json2ts('{"id": 1, "name": "hacxy"}', "Root");
 /**
   export interface Root {
     id: number;

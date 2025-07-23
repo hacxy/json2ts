@@ -5,7 +5,7 @@ import ts from 'typescript';
  * @param codeString TypeScript 代码字符串
  * @returns { sortedCode: string; sortedTypes: string[] } 排序后的代码和类型顺序
  */
-export function analyzeAndSortTypeScript(codeString: string): { sortedCode: string; sortedTypes: string[] } {
+export function analyzeAndSortTypeScript(codeString: string): { sortedCode: string, sortedTypes: string[] } {
   // 创建虚拟源文件
   const sourceFile = ts.createSourceFile('virtual.ts', codeString, ts.ScriptTarget.Latest, true);
 
@@ -16,7 +16,7 @@ export function analyzeAndSortTypeScript(codeString: string): { sortedCode: stri
   const nodeTexts = new Map<string, string>();
 
   // 第一遍遍历：收集所有定义的类型
-  ts.forEachChild(sourceFile, (node) => {
+  ts.forEachChild(sourceFile, node => {
     if (ts.isTypeAliasDeclaration(node) || ts.isInterfaceDeclaration(node)) {
       const typeName = node.name.getText(sourceFile);
       definedTypes.add(typeName);
@@ -27,7 +27,7 @@ export function analyzeAndSortTypeScript(codeString: string): { sortedCode: stri
   });
 
   // 第二遍遍历：收集依赖关系
-  ts.forEachChild(sourceFile, (node) => {
+  ts.forEachChild(sourceFile, node => {
     if (ts.isTypeAliasDeclaration(node) || ts.isInterfaceDeclaration(node)) {
       const typeName = node.name.getText(sourceFile);
       const deps: Set<string> = new Set(); // 使用 Set 避免重复依赖
@@ -77,15 +77,15 @@ export function analyzeAndSortTypeScript(codeString: string): { sortedCode: stri
 
       // 对于接口，遍历其成员
       if (ts.isInterfaceDeclaration(node)) {
-        node.members.forEach((member) => {
+        node.members.forEach(member => {
           findTypeReferences(member);
         });
       }
 
       // 对于接口，检查继承的接口
       if (ts.isInterfaceDeclaration(node) && node.heritageClauses) {
-        node.heritageClauses.forEach((clause) => {
-          clause.types.forEach((type) => {
+        node.heritageClauses.forEach(clause => {
+          clause.types.forEach(type => {
             const baseName = type.expression.getText(sourceFile);
             if (definedTypes.has(baseName) && baseName !== typeName) {
               deps.add(baseName);
@@ -138,12 +138,12 @@ export function analyzeAndSortTypeScript(codeString: string): { sortedCode: stri
   });
 
   // 处理循环依赖 - 将循环依赖的类型放在一起
-  cycles.forEach((cycle) => {
+  cycles.forEach(cycle => {
     // 找出循环中第一个出现在排序列表中的位置
-    const insertIndex = sortedTypes.findIndex((t) => cycle.includes(t));
+    const insertIndex = sortedTypes.findIndex(t => cycle.includes(t));
     if (insertIndex !== -1) {
       // 移除循环中的所有类型
-      cycle.forEach((type) => {
+      cycle.forEach(type => {
         const index = sortedTypes.indexOf(type);
         if (index !== -1) sortedTypes.splice(index, 1);
       });
@@ -155,7 +155,7 @@ export function analyzeAndSortTypeScript(codeString: string): { sortedCode: stri
 
   // 收集非类型定义代码部分
   const nonTypeCode: string[] = [];
-  ts.forEachChild(sourceFile, (node) => {
+  ts.forEachChild(sourceFile, node => {
     if (!ts.isTypeAliasDeclaration(node) && !ts.isInterfaceDeclaration(node)) {
       nonTypeCode.push(node.getFullText(sourceFile));
     }
@@ -163,7 +163,7 @@ export function analyzeAndSortTypeScript(codeString: string): { sortedCode: stri
 
   // 构建排序后的类型定义代码
   const sortedTypeCode = sortedTypes
-    .map((type) => nodeTexts.get(type))
+    .map(type => nodeTexts.get(type))
     .filter(Boolean)
     .join('\n\n');
 
