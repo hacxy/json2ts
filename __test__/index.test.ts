@@ -11,10 +11,7 @@ export interface Root {
   a:   number;
   b:   string;
   foo: Foo[];
-}
-
-
-`;
+}`;
   const value = await json2ts(`{
     "a": 1,
     "b": "2",

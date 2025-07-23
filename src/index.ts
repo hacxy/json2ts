@@ -40,7 +40,7 @@ async function json2ts(json: string, name: string = 'Root', options: Json2TsOpti
   }
   const { sortedCode } = analyzeAndSortTypeScript(tsCode);
 
-  return sortedCode;
+  return sortedCode.trim();
 }
 
 export default json2ts;
