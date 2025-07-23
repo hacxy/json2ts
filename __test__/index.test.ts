@@ -12,6 +12,7 @@ export interface Root {
   b:   string;
   foo: Foo[];
 }`;
+
   const value = await json2ts(`{
     "a": 1,
     "b": "2",
@@ -26,5 +27,26 @@ export interface Root {
         }
     ]
 }`);
+  const expected2 = `export interface RootElement {
+  a: number;
+  b: string;
+}
+
+export type Root = RootElement[];`;
+  const value2 = await json2ts(`[
+    {
+        "a": 1,
+        "b": "2"
+    },
+    {
+        "a": 1,
+        "b": "2"
+    },
+    {
+        "a": 1,
+        "b": "2"
+    }
+]`);
   expect(value).toEqual(expected1);
+  expect(value2).toEqual(expected2);
 });
