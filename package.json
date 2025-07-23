@@ -1,7 +1,7 @@
 {
   "name": "@hacxy/json2ts",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Json to typescript types generator",
   "author": {
     "name": "hacxy",
