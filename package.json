@@ -37,7 +37,8 @@
     "dev": "vite build --watch",
     "build": "vite build",
     "test": "vitest run",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "release": "bump"
   },
   "dependencies": {
     "quicktype-core": "23.0.146",
