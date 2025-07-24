@@ -15,9 +15,9 @@ npm install @hacxy/json2ts --save
 ### Example
 
 ```ts
-import json2ts from "@hacxy/json2ts";
+import json2ts from '@hacxy/json2ts';
 
-await json2ts('{"id": 1, "name": "hacxy"}', "Root");
+await json2ts('{"id": 1, "name": "hacxy"}', 'Root');
 /**
   export interface Root {
     id: number;
@@ -45,7 +45,7 @@ interface Json2TsOptions {
   /**
    * indentation of the generated code, default is 2 spaces
    */
-  indentation?: number;
+  indentation?: number
 }
 ```
 
